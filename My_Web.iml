@@ -43,5 +43,9 @@
     <orderEntry type="library" name="Library" level="project" />
     <orderEntry type="library" name="Java Mail" level="project" />
     <orderEntry type="library" name="mysql-connector-java-8.0.17" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="di-spring-1.0.0" level="project" />
+    <orderEntry type="library" name="spring-web-3.0.4.RELEASE" level="project" />
+    <orderEntry type="library" name="spring-beans-5.1.9.RELEASE" level="project" />
   </component>
 </module>

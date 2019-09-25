@@ -6,7 +6,9 @@ import com.vienmv.dao.ProductDao;
 import com.vienmv.dao.impl.ProductDaoImpl;
 import com.vienmv.model.Product;
 import com.vienmv.service.ProductService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ProductServiceImpl implements ProductService{
 	ProductDao productDao = new ProductDaoImpl();
 
@@ -50,10 +52,10 @@ public class ProductServiceImpl implements ProductService{
 		return productDao.get(id);
 	}
 
-	@Override
-	public List<Product> getAll(int start, int row) {
-		return productDao.getAll(start,row);
-	}
+//	@Override
+//	public List<Product> getAll(int start, int row) {
+//		return productDao.getAll(start,row);
+//	}
 
 	@Override
 	public List<Product> search(String product) {

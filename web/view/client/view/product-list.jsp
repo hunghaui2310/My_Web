@@ -152,16 +152,6 @@
 														<a href="${pageContext.request.contextPath }/product/detail?id=${p.id}">${p.name }</a>
 
 													</h4></li>
-												<li><span class="gender text-uppercase">${p.category.name }</span></li>
-												<li class="pull-right">
-													<ul class="list-inline product-ratings">
-														<li><i class="rating-selected fa fa-star"></i></li>
-														<li><i class="rating-selected fa fa-star"></i></li>
-														<li><i class="rating-selected fa fa-star"></i></li>
-														<li><i class="rating fa fa-star"></i></li>
-														<li><i class="rating fa fa-star"></i></li>
-													</ul>
-												</li>
 											</ul>
 											<div class="margin-bottom-10">
 												<span class="title-price margin-right-10">$ ${p.price }.0</span>
@@ -193,7 +183,7 @@
                     <div class="text-center">
                         <ul class="pagination pagination-v2">
                         <c:if test="${currentPage != 1}">
-                            <span><a href="p.do?page=${currentPage - 1}" class="fa fa-angle-left"></a></span>
+                            <span><a href="p.do?page=${currentPage - 1}" class="fa fa-angle-left">Previous</a></span>
                         </c:if>
                         <c:forEach begin="1" end="${noOfPages}" var="i">
                             <c:choose>
@@ -201,12 +191,12 @@
                                     <span>${i}</span>
                                 </c:when>
                                 <c:otherwise>
-                                    <li><a href="p.do?page=${i}">${i}</a></li>
+                                    <span><a href="p.do?page=${i}">${i}</a></span>
                                 </c:otherwise>
                             </c:choose>
                         </c:forEach>
                         <c:if test="${currentPage lt noOfPages}">
-                            <span><a href="p.do?page=${currentPage + 1}" class="fa fa-angle-right"></a></span>
+                            <span><a href="p.do?page=${currentPage + 1}" class="fa fa-angle-right">Next</a></span>
                         </c:if>
                         </ul>
                     </div>

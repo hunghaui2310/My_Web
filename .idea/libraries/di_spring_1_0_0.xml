@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="di-spring-1.0.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/di-spring-1.0.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

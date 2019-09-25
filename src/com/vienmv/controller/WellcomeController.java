@@ -28,11 +28,11 @@ public class WellcomeController extends HttpServlet {
 		if(req.getParameter("page") != null)
 			page = Integer.parseInt(req.getParameter("page"));
 		ProductDaoImpl dao = new ProductDaoImpl();
-		List<Product> list = dao.getAll((page-1)*record,record);
+//		List<Product> list = dao.getAll((page-1)*record,record);
 
 		int noOfRecords = dao.getNoOfRecord();
 		int noOfPages = (int)Math.ceil(noOfRecords * 1.0 / record);
-		req.setAttribute("pwelcome", list);
+//		req.setAttribute("pwelcome", list);
 		req.setAttribute("noOfPages", noOfPages);
 		req.setAttribute("currentPage", page);
 

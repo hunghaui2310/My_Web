@@ -1,10 +1,7 @@
 package com.vienmv.dao.impl;
 
 import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -22,7 +19,8 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 //	EntityManager entityManager;
 
 	CategoryService categortService = new CategoryServiceImpl();
-
+	Statement statement;
+	Connection connection;
 	private int noOfRecord;
 
 	@Override
@@ -137,33 +135,46 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 	@Override
 	public List<Product> getAll(int start, int row) {
 
-		List<Product> productList = new ArrayList<Product>();
-		String sql = "SELECT product.id, product.name AS p_name, product.price, product.image, product.des , category.cate_name AS c_name  "
-				+ "FROM product INNER JOIN category " + "ON product.cate_id = category.cate_id " + " limit "+(start-1)+" , "+row;
-		Connection conn = super.getJDBCConnection();
-
+		List<Product> productList = new ArrayList<>();
+		String sql = "SELECT SQL_CALC_FOUND_ROWS * FROM Product limit " +(start+1)+", "+row;
+		Product product = null;
 		try {
-			PreparedStatement ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
+			connection = getJDBCConnection();
+			statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(sql);
 
 			while (rs.next()) {
-				Category category = categortService.get(rs.getString("c_name"));
-				Product product = new Product();
+				product = new Product();
 				product.setId(rs.getInt("id"));
-				product.setName(rs.getString("p_name"));
+				product.setName(rs.getString("name"));
 				product.setPrice(rs.getLong("price"));
 				product.setImage(rs.getString("image"));
 				product.setDes(rs.getString("des"));
-				product.setCategory(category);
 				productList.add(product);
 			}
+			rs.close();
 
+			rs = statement.executeQuery("SELECT FOUND_ROWS()");
+			if(rs.next())
+				this.noOfRecord = rs.getInt(1);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			try {
+					if(statement != null)
+						statement.close();
+					if(connection != null)
+						connection.close();
+			}catch (SQLException e){
+				e.printStackTrace();
+			}
 		}
-
 		return productList;
+	}
+
+	public int getNoOfRecord(){
+		return noOfRecord;
 	}
 
 	@Override
@@ -264,9 +275,5 @@ public class ProductDaoImpl extends JDBCConnection implements ProductDao {
 		}
 
 		return productList;
-	}
-
-	public int getNoOfRecord(){
-		return noOfRecord;
 	}
 }

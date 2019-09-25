@@ -6,7 +6,7 @@
     <display-name>UNIFY</display-name>
     <servlet>
         <servlet-name>ProductListClientController</servlet-name>
-        <servlet-class>com.vienmv.service.impl.ProductServlet</servlet-class>
+        <servlet-class>com.vienmv.controller.ProductListClientController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProductListClientController</servlet-name>

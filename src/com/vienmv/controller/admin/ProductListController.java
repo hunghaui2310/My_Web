@@ -29,11 +29,11 @@ public class ProductListController extends HttpServlet {
 		if(req.getParameter("page") != null)
 			page = Integer.parseInt(req.getParameter("page"));
 		ProductDaoImpl dao = new ProductDaoImpl();
-		List<Product> list = dao.getAll((page-1)*record,record);
+//		List<Product> list = dao.getAll((page-1)*record,record);
 
 		int noOfRecords = dao.getNoOfRecord();
 		int noOfPages = (int)Math.ceil(noOfRecords * 1.0 / record);
-		req.setAttribute("proList", list);
+//		req.setAttribute("proList", list);
 		req.setAttribute("noOfPages", noOfRecords);
 		req.setAttribute("currentPage", page);
 		RequestDispatcher dispatcher = req.getRequestDispatcher("/view/admin/view/list-product.jsp");
